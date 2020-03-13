@@ -1,6 +1,7 @@
 import unittest
 from acme import Product
 from acme_report import generate_products, ADJECTIVES, NOUNS
+from random import randint as rdm
 
 
 class AcmeProductTests(unittest.TestCase):
@@ -36,10 +37,13 @@ class AcmeReportTests(unittest.TestCase):
         prods = generate_products()
         self.assertEqual(len(prods), 30)
 
-    # def test_legal_names(self):
-    #     '''To make sure our pruduct names are syntactically proper'''
-    #     prods = generate_products()
-    #     self.
+    def test_legal_names(self):
+        '''To make sure our pruduct names are syntactically proper'''
+        prods = generate_products()
+        x = rdm(0, (len(prods)-1))
+        word = prods[x]
+        self.assertIn(word.split(' ')[0],ADJECTIVES)
+        self.assertIn(word.split(' ')[1],NOUNS)
 
 
 if __name__ == '__main__':
